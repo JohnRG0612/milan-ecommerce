@@ -1,5 +1,6 @@
-// TODO Fase A: mostrar datos básicos del producto, botón "Agregar al carrito"
-// TODO Fase B: traer datos desde el MCP del Ej 1 + sección de recomendados
+import { notFound } from "next/navigation";
+import { getProductBySlug } from "@/lib/products";
+import { addToCartAction } from "@/app/cart/actions";
 
 export default async function ProductPage({
   params,
@@ -7,12 +8,24 @@ export default async function ProductPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  const product = getProductBySlug(slug);
+
+  if (!product) {
+    notFound();
+  }
+
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-4">Producto: {slug}</h1>
-      <p className="text-neutral-600">
-        Placeholder — implementar detalle del producto y recomendados.
+    <article>
+      <h1>{product.name}</h1>
+      <p>{product.description}</p>
+      <p>${(product.priceCents / 100).toLocaleString("es-CO")}</p>
+      <form action={addToCartAction}>
+        <input type="hidden" name="slug" value={product.slug} />
+        <button type="submit">Agregar al carrito</button>
+      </form>
+      <p>
+        <a href="/">← Volver al catálogo</a>
       </p>
-    </div>
+    </article>
   );
 }
