@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getCart } from "./store";
 import { getProductBySlug, type Product } from "@/lib/products";
 
@@ -12,7 +13,7 @@ export default function CartPage() {
       <div>
         <h1>Carrito</h1>
         <p>
-          El carrito está vacío. <a href="/">Volver al catálogo</a>.
+          El carrito está vacío. <Link href="/">Volver al catálogo</Link>.
         </p>
       </div>
     );

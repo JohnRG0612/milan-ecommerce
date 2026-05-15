@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProductBySlug } from "@/lib/products";
 import { addToCartAction } from "@/app/cart/actions";
@@ -24,7 +25,7 @@ export default async function ProductPage({
         <button type="submit">Agregar al carrito</button>
       </form>
       <p>
-        <a href="/">← Volver al catálogo</a>
+        <Link href="/">← Volver al catálogo</Link>
       </p>
     </article>
   );
