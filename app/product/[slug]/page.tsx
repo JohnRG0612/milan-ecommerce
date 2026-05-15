@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getProductBySlug } from "@/lib/products";
+import { getProductBySlug } from "@/lib/mcp";
 import { addToCartAction } from "@/app/cart/actions";
 
 export default async function ProductPage({
@@ -9,7 +9,7 @@ export default async function ProductPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = await getProductBySlug(slug);
 
   if (!product) {
     notFound();
@@ -17,6 +17,9 @@ export default async function ProductPage({
 
   return (
     <article>
+      <div className="text-xs uppercase tracking-wide text-neutral-500 mb-2">
+        {product.category}
+      </div>
       <h1>{product.name}</h1>
       <p>{product.description}</p>
       <p>${(product.priceCents / 100).toLocaleString("es-CO")}</p>

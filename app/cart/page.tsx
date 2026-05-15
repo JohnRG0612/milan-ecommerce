@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { getCart } from "./store";
-import { getProductBySlug, type Product } from "@/lib/products";
+import { getProductBySlug, type Product } from "@/lib/mcp";
 
-export default function CartPage() {
+export default async function CartPage() {
   const slugs = getCart();
-  const items = slugs
-    .map((slug) => getProductBySlug(slug))
-    .filter((p): p is Product => p !== undefined);
+  const items = (
+    await Promise.all(slugs.map((slug) => getProductBySlug(slug)))
+  ).filter((p): p is Product => p !== null);
 
   if (items.length === 0) {
     return (
