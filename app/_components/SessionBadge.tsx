@@ -1,6 +1,3 @@
-// Server Component que muestra el email logueado o un link a /login.
-// Vive en el header del layout raíz. Usa getCurrentUser() del módulo auth.
-
 import Link from "next/link";
 import { getCurrentUser } from "@/lib/auth/session";
 import { logoutAction } from "@/lib/auth/actions";
@@ -9,18 +6,21 @@ export async function SessionBadge() {
   const user = await getCurrentUser();
   if (!user) {
     return (
-      <Link href="/login" className="text-sm hover:underline">
+      <Link
+        href="/login"
+        className="text-neutral-700 hover:text-emerald-600 transition-colors"
+      >
         Entrar
       </Link>
     );
   }
   return (
-    <span className="flex items-center gap-2 text-sm">
-      <span className="text-neutral-700">{user.email}</span>
+    <span className="flex items-center gap-3">
+      <span className="text-neutral-600">{user.email}</span>
       <form action={logoutAction}>
         <button
           type="submit"
-          className="text-neutral-500 hover:text-neutral-900 hover:underline"
+          className="text-neutral-500 hover:text-emerald-600 transition-colors"
         >
           Salir
         </button>

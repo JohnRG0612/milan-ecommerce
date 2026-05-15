@@ -14,25 +14,38 @@ export default async function HomePage({
 
   return (
     <div>
-      <h1>Catálogo</h1>
+      <div className="mb-6">
+        <h1 className="text-3xl font-bold tracking-tight mb-1">Catálogo</h1>
+        <p className="text-sm text-neutral-600">
+          {products.length}{" "}
+          {q.trim() ? `resultados para "${q.trim()}"` : "bicicletas disponibles"}
+        </p>
+      </div>
       <SearchBar defaultQuery={q} />
-      <p className="text-neutral-600 text-sm mb-4">
-        {products.length}{" "}
-        {q.trim() ? `resultados para "${q.trim()}"` : "bicicletas disponibles"}
-      </p>
       {products.length === 0 ? (
-        <p>No hay productos que coincidan con la búsqueda.</p>
+        <p className="text-neutral-600">
+          No hay productos que coincidan con la búsqueda.
+        </p>
       ) : (
-        <ul>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {products.map((p) => (
-            <li key={p.slug}>
-              <Link href={`/product/${p.slug}`}>{p.name}</Link>{" "}
-              <span className="text-neutral-500 text-sm">
-                — ${(p.priceCents / 100).toLocaleString("es-CO")} · {p.category}
+            <Link
+              key={p.slug}
+              href={`/product/${p.slug}`}
+              className="group block rounded-lg border border-neutral-200 bg-white p-4 shadow-sm hover:border-emerald-600 hover:shadow-md transition-all"
+            >
+              <span className="inline-block rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-medium uppercase tracking-wide text-emerald-700 mb-2">
+                {p.category}
               </span>
-            </li>
+              <h3 className="font-medium text-neutral-900 group-hover:text-emerald-700 transition-colors line-clamp-2 mb-2">
+                {p.name}
+              </h3>
+              <p className="text-lg font-semibold text-neutral-900">
+                ${(p.priceCents / 100).toLocaleString("es-CO")}
+              </p>
+            </Link>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

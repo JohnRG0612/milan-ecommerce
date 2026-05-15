@@ -15,19 +15,24 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body className="min-h-screen bg-white text-neutral-900">
-        <header className="border-b border-neutral-200 px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="text-xl font-bold">
-            Milán Bicicletas
-          </Link>
-          <nav className="flex items-center gap-4 text-sm">
-            <Link href="/cart" className="hover:underline">
-              Carrito
+      <body className="min-h-screen bg-neutral-50 text-neutral-900">
+        <header className="bg-white border-b border-neutral-200 shadow-sm">
+          <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+            <Link href="/" className="text-2xl font-bold tracking-tight">
+              Milán Bicicletas
             </Link>
-            <SessionBadge />
-          </nav>
+            <nav className="flex items-center gap-6 text-sm">
+              <Link
+                href="/cart"
+                className="text-neutral-700 hover:text-emerald-600 transition-colors"
+              >
+                Carrito
+              </Link>
+              <SessionBadge />
+            </nav>
+          </div>
         </header>
-        <main className="px-6 py-8">{children}</main>
+        <main className="container mx-auto px-4 py-6">{children}</main>
       </body>
     </html>
   );
