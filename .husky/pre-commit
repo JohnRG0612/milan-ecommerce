@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
-# TODO Fase B: descomentar las siguientes líneas para activar el feedback loop.
-# El hook debe bloquear commits cuando lint o tests fallen.
-#
-# pnpm lint
-# pnpm test
+# Bloquea commits cuando lint o tests fallen.
+# Activado en Fase B después de cerrar el ciclo TDD del buscador
+# (los commits "rojo" se hicieron antes de esta activación).
+
+pnpm lint
+pnpm test
