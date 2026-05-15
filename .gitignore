@@ -6,6 +6,9 @@ node_modules
 dist
 .DS_Store
 
+# TypeScript incremental build cache
+*.tsbuildinfo
+
 # Mantener pnpm-lock.yaml versionado — es crítico para reproducibilidad
 # y seguridad (mismas versiones exactas para todo el equipo).
 # NO agregar pnpm-lock.yaml aquí.
