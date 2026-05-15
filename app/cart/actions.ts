@@ -8,6 +8,6 @@ export async function addToCartAction(formData: FormData): Promise<void> {
   if (typeof slug !== "string" || slug.length === 0) {
     throw new Error("slug requerido");
   }
-  addItem(slug);
+  await addItem(slug);
   redirect("/cart");
 }

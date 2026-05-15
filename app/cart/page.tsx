@@ -3,7 +3,7 @@ import { getCart } from "./store";
 import { getProductBySlug, type Product } from "@/lib/mcp";
 
 export default async function CartPage() {
-  const slugs = getCart();
+  const slugs = await getCart();
   const items = (
     await Promise.all(slugs.map((slug) => getProductBySlug(slug)))
   ).filter((p): p is Product => p !== null);
